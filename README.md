@@ -8,7 +8,7 @@ Everything is in one notebook, [`Ising2d.ipynb`](Ising2d.ipynb), with an explana
 
 ![Magnetisation against temperature for L = 32, 64 and 128, compared with Onsager's exact result](figures/magnetisation_vs_T.png)
 
-Below T_c all three lattice sizes match the exact curve. Above T_c a finite lattice keeps a small magnetisation, which halves each time L doubles:
+Below T_c all three lattice sizes agree with the exact curve to within about 1 %. Above T_c a finite lattice keeps a magnetisation that the infinite lattice does not have. From T = 2.4 upwards it roughly halves each time L doubles, as expected for a disordered lattice, where |m| falls like 1/√N = 1/L. Just above T_c, at T = 2.3, it falls more slowly: there the correlation length is about 42 sites, comparable to the lattice sizes.
 
 | T | L = 32 | L = 64 | L = 128 | exact (infinite lattice) |
 |---|---|---|---|---|
@@ -38,11 +38,11 @@ pip install numpy matplotlib jupyter
 jupyter notebook Ising2d.ipynb
 ```
 
-The whole notebook runs in about 5 minutes; most of that is the L = 128 scan. The random number generator is seeded, so the results are reproducible.
+The whole notebook runs in about 5 minutes; most of that is the L = 128 scan. The random number generator is seeded, so the results are reproducible with the same NumPy version. Other versions can produce a different random sequence, which changes the numbers slightly but not the conclusions.
 
 ## Limitations
 
-- The averages have no error bars. Consecutive sweeps are correlated, most strongly near T_c, so the point at T = 2.3 is the least certain one (about ±0.03 to ±0.04 for the larger lattices).
+- The averages have no error bars. Consecutive sweeps are correlated, most strongly near T_c, so the point at T = 2.3 is the least certain one (about ±0.03 to ±0.04, estimated from autocorrelation times measured in separate long runs).
 - Single-spin Metropolis slows down near T_c. Cluster algorithms such as Wolff or Swendsen–Wang would be faster there.
 
 ## References
